@@ -1,71 +1,39 @@
-import Axios from 'axios'
-import { useHistory } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+import Signin from '../components/signin'
+import axios from 'axios'
+const submit = (e, formState, setErrorMessage, history) => {
+  e.preventDefault()
 
-const Login = () => {
-  let history = useHistory()
-
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    e.preventDefault()
-    Axios.post('https://easy-login-api.herokuapp.com/users/login', {
-      username,
-      password
+  if (!formState.username || !formState.password) {
+    setErrorMessage('Remplissez les champs')
+    return
+  }
+  axios({
+    method: 'POST',
+    url: 'https://easy-login-api.herokuapp.com/users/login',
+    data: {
+      username: formState.username,
+      password: formState.password
+    }
+  }).then(res => {
+    localStorage.setItem('token', res.headers['x-access-token'])
+    history.push({
+      pathname: '/statut',
+      state: {
+        message: res.data,
+        username: formState.username
+      }
     })
-      .then(res => {
-        if (username && password) {
-          console.log(res)
-          history.push({
-            pathname: '/characters',
-            state: {
-              message: res.data,
-              username: username
-            }
-          })
-        } else {
-          console.log('error')
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  const handleLoginChange = e => {
-    setUsername(e.target.value)
-  }
-
-  const handlePasswordChange = e => {
-    setPassword(e.target.value)
-  }
+  })
+}
+const Login = ({ history }) => {
+  useEffect(() => {
+    localStorage.getItem('token') && history.push('/statut')
+  }, [])
 
   return (
     <div className='login'>
-      <form onSubmit={handleSubmit}>
-        <div className='form-group'>
-          <label> Username </label>
-          <input
-            type='text'
-            name='username'
-            value={username}
-            onChange={handleLoginChange}
-          />
-        </div>
-        <div className='form-group'>
-          <label> password </label>
-          <input
-            type='password'
-            name='password'
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <input type='submit' value='Valider' />
-      </form>
+      <Signin submit={submit} />
     </div>
   )
 }
