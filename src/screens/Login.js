@@ -19,6 +19,11 @@ const Login = ({ history }) => {
           return
         }
         return
+      } else if (formState.password.length < 6) {
+        setErrorMessage(
+          ' Veuillez entrer un mot de passe superieur a 5 caractéres'
+        )
+        return
       }
       axios({
         method: 'POST',
