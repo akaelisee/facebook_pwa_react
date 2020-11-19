@@ -10,6 +10,8 @@ import photo from '../assets/photo.png'
 import Publication from '../components/publication'
 import RemoveBtn from '../components/removeBtn'
 import Styles from '../components/styledComponents'
+import { Detector } from 'react-detect-offline'
+import Offline from '../components/offline'
 
 const Statut = props => {
   const [timeLine, setTimeLine] = useState([])
@@ -177,6 +179,14 @@ const Statut = props => {
       {openPopup ? (
         <Publication handleSubmit={handleSubmit} close={closePopup} />
       ) : null}
+      <Detector
+        render={({ online }) => {
+          if (!online) {
+            return <Offline />
+          }
+          return <></>
+        }}
+      />
     </Styles.StatutContainer>
   )
 }
