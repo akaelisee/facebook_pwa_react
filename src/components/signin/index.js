@@ -6,7 +6,7 @@ import Styles from '../styledComponents'
 const Signin = ({ submit }) => {
   const [formState, setFormState] = useState({ username: '', password: '' })
   const [errorMessage, setErrorMessage] = useState('')
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = 'https://easy-login-api.herokuapp.com/users/login'
   const history = useHistory()
 
   const handleFocus = () => {
