@@ -148,95 +148,7 @@ const TextStatus = styled.div`
   padding-bottom: 5px;
 `
 
-// Style loader Component
-const Loading = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`
-const LoaderPage = styled.div`
-  position: absolute;
-  top: 37%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  border: 10px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 10px solid #3498db;
-  width: 40px;
-  height: 40px;
-  animation: ${Loading} 1s linear infinite;
-`
 
-const PageFixed = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-`
-
-// Style Signin Component
-const HeaderContainer = styled.div`
-  background-color: #fff;
-`
-const ContainerImage = styled.div`
-  margin-bottom: 25px;
-`
-const ImageBanniere = styled.img`
-  width: 100%;
-`
-const Form = styled.form`
-  ${props => {
-    if (props.public) {
-      return `
-         width: 90%;
-         margin: 0 auto;
-        `
-    } else {
-      return `
-          width: 88%;
-          margin: 0 auto;
-        `
-    }
-  }}
-`
-const FormGroup = styled.div`
-  width: 100%;
-  margin-bottom: 20px;
-`
-const InputGroupA = styled.input`
-  width: 100%;
-  padding: 10px 0;
-  border-bottom: transparent !important;
-  border: 1px solid #aaaaaa;
-  border-radius: 2px 2px 0 0;
-  outline: none;
-  font-size: 16px;
-  ::placeholder {
-    padding-left: 5px;
-  }
-`
-const InputGroupB = styled.input`
-  width: 100%;
-  padding: 10px 0;
-  border: 1px solid #aaaaaa;
-  border-radius: 0 0 2px 2px;
-  outline: none;
-  font-size: 16px;
-  ::placeholder {
-    padding-left: 5px;
-  }
-`
-const BtnSubmit = styled.input`
-  width: 100%;
-  padding: 10px 0;
-  background-color: #1877f2;
-  border: transparent;
-  border-radius: 5px;
-  color: #f2eded;
-  font-size: 16px;
-  margin-bottom: 10px;
-`
 
 // RemoveBtn Component
 const PageUp = keyframes`
@@ -377,17 +289,6 @@ const Styles = {
   Icon,
   Card,
   TextStatus,
-  Loading,
-  LoaderPage,
-  PageFixed,
-  HeaderContainer,
-  ContainerImage,
-  ImageBanniere,
-  Form,
-  FormGroup,
-  InputGroupA,
-  InputGroupB,
-  BtnSubmit,
   PageRemove,
   HrBar,
   CardRemove,

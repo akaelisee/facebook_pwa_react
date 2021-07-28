@@ -1,11 +1,14 @@
 import React from 'react'
-import Styles from '../styledComponents'
+import { Container } from '../../styles/Container'
+import { PageFixed, LoaderPage } from '../../styles/Loader'
 
 const Loader = () => {
   return (
-    <Styles.PageFixed>
-      <Styles.LoaderPage></Styles.LoaderPage>
-    </Styles.PageFixed>
+    <Container>
+      <PageFixed>
+        <LoaderPage></LoaderPage>
+      </PageFixed>
+    </Container>
   )
 }
 
