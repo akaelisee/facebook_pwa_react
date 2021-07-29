@@ -8,21 +8,18 @@ export const Loading = keyframes`
 export const LoaderPage = styled.div`
   position: absolute;
   top: 37%;
-  left: 40%;
+  left: 45%;
   transform: translate(-50%, -50%);
   border: 10px solid #f3f3f3;
   border-radius: 50%;
   border-top: 10px solid #3498db;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   animation: ${Loading} 1s linear infinite;
 `
 
 export const PageFixed = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ff0;
+  position: relative;
+  height: 100vh;
+  background-color: #fff;
 `
