@@ -9,6 +9,7 @@ import Login from '../views/Login'
 import Statut from '../views/Statut'
 import Home from '../views/home'
 import PrivateRoute from '../utils/privateRoute'
+import Register from '../views/register'
 
 const Routes = () => {
   return (
@@ -16,6 +17,7 @@ const Routes = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
         <PrivateRoute path='/statut' component={Statut} />
         <Redirect to='/'></Redirect>
       </Switch>

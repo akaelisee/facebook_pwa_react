@@ -47,7 +47,7 @@ const Login = ({ history }) => {
     }
   }
 
-  return isLoaded ? (
+  return !isLoaded ? (
     <div className='login'>
       <Signin submit={submit} />
     </div>
