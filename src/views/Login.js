@@ -9,10 +9,10 @@ const Login = ({ history }) => {
   const submit = (e, formState, setErrorMessage, history, apiUrl) => {
     e.preventDefault()
     try {
-      if (!formState.username || !formState.password) {
+      if (!formState.email || !formState.password) {
         setErrorMessage('Veuillez remplir les champs')
-        if (!formState.username) {
-          setErrorMessage('Veuillez entrer un username')
+        if (!formState.email) {
+          setErrorMessage('Veuillez entrer un email')
           return
         } else if (!formState.password) {
           setErrorMessage(' Veuillez entrer un mot de passe')
@@ -29,17 +29,19 @@ const Login = ({ history }) => {
         method: 'POST',
         url: apiUrl,
         data: {
-          username: formState.username,
+          username: formState.email,
           password: formState.password
         }
       }).then(res => {
         localStorage.setItem('token', res.headers['x-access-token'])
-        history.push({
-          pathname: '/statut',
-          state: {
-            username: formState.username
-          }
-        })
+        console.log('object')
+        console.log(res)
+        // history.push({
+        //   pathname: '/statut',
+        //   state: {
+        //     username: formState.username
+        //   }
+        // })
       })
       setIsLoader(true)
     } catch (error) {

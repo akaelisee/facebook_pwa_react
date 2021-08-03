@@ -4,9 +4,9 @@ import { HeaderContainer, BtnSubmit, Form } from '../styles/Login'
 import { Banner } from './logo'
 
 const Signin = ({ submit }) => {
-  const [formState, setFormState] = useState({ username: '', password: '' })
+  const [formState, setFormState] = useState({ email: '', password: '' })
   const [errorMessage, setErrorMessage] = useState('')
-  const apiUrl = 'https://easy-login-api.herokuapp.com/users/login'
+  const apiUrl = 'http://localhost:4000/login/user'
   const history = useHistory()
 
   const handleFocus = () => {
@@ -16,31 +16,33 @@ const Signin = ({ submit }) => {
   return (
     <>
       <HeaderContainer className='login'>
-        <div className="image__login">
+        <div className='image__login'>
           <Banner />
         </div>
 
-        <div className="signin__first">
-          <div className="signin__form">
+        <div className='signin__first'>
+          <div className='signin__form'>
             <Form
-              onSubmit={e => submit(e, formState, setErrorMessage, history, apiUrl)}
+              onSubmit={e =>
+                submit(e, formState, setErrorMessage, history, apiUrl)
+              }
             >
-              <div className="form__login">
-                <div className="form__group">
+              <div className='form__login'>
+                <div className='form__group'>
                   <input
-                    className="form__text"
+                    className='form__text'
                     onFocus={handleFocus}
                     type='text'
                     name='username'
                     placeholder='Adresse e-mail'
                     onChange={e =>
-                      setFormState({ ...formState, username: e.target.value })
+                      setFormState({ ...formState, email: e.target.value })
                     }
                   />
                 </div>
-                <div className="form__group">
+                <div className='form__group'>
                   <input
-                    className="form__mdp"
+                    className='form__mdp'
                     type='password'
                     name='password'
                     onFocus={handleFocus}
@@ -49,28 +51,31 @@ const Signin = ({ submit }) => {
                       setFormState({ ...formState, password: e.target.value })
                     }
                   />
-                </div>  
-              <BtnSubmit type='submit' value='Connexion' />
+                </div>
+                <BtnSubmit type='submit' value='Connexion' />
               </div>
-              <p style={{ color: 'red', textAlign: 'center' }}> {errorMessage} </p>
+              <p style={{ color: 'red', textAlign: 'center' }}>
+                {errorMessage}
+              </p>
             </Form>
 
             {/* link back and password forget */}
-            <div className="signin__link">
+            <div className='signin__link'>
               <p> Mot de passe oublié ? </p>
-              <p><Link to="/"> Retour </Link></p>
+              <p>
+                <Link to='/'> Retour </Link>
+              </p>
             </div>
           </div>
-          <div className="signin__second">
-            <div className="register__party">
-                <span> ou </span>
+          <div className='signin__second'>
+            <div className='register__party'>
+              <span> ou </span>
             </div>
-            <div className="btn__register">
-              <Link to="/register"> Créer un compte </Link>
+            <div className='btn__register'>
+              <Link to='/register'> Créer un compte </Link>
             </div>
           </div>
         </div>
-
       </HeaderContainer>
     </>
   )

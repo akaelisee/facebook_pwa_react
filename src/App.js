@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Routes from './config/Routes'
-import {Container} from './styles/Container'
+import { Container } from './styles/Container'
 
 function App() {
   return (
