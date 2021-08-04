@@ -12,7 +12,7 @@ const Publication = props => {
         <Styles.Span public> Créer une publication </Styles.Span>
         <Styles.Span public></Styles.Span>
       </Styles.StatutContainer>
-      <Styles.Form
+      <form
         onSubmit={e => {
           setStatus('')
           props.handleSubmit(e, status, setStatus)
@@ -24,7 +24,7 @@ const Publication = props => {
           onChange={e => setStatus(e.target.value)}
         />
         <Styles.InputSubmit type='submit' value='Publier' />
-      </Styles.Form>
+      </form>
     </Styles.PagePublication>
   )
 }

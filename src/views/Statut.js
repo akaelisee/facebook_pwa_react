@@ -29,7 +29,7 @@ const Statut = props => {
     }
   }
   useEffect(() => {
-    setTimeLine(JSON.parse(localStorage.getItem('add') || '[]'))
+    // setTimeLine(JSON.parse(localStorage.getItem('add') || '[]'))
   }, [])
 
   // deconnexion

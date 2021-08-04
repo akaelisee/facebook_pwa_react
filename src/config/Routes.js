@@ -20,7 +20,8 @@ const Routes = () => {
         <Route exact path='/login' component={Login} />
         <Route exact path='/torejoin' component={HomeRegister} />
         <Route exact path='/register' component={Register} />
-        <PrivateRoute path='/statut' component={Statut} />
+        <Route exact path='/statut' component={Statut} />
+        {/* <PrivateRoute path='/statut' component={Statut} /> */}
         <Redirect to='/'></Redirect>
       </Switch>
     </Router>

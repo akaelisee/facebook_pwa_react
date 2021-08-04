@@ -4,6 +4,8 @@ import { Container } from '../styles/Container'
 import Signout from '../components/signout'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import { Wrapper } from '../styles/Wrapper'
+import FooterRegister from '../components/footerRegister'
 
 const Register = () => {
   const history = useHistory()
@@ -77,7 +79,19 @@ const Register = () => {
   }
   return (
     <Container>
-      <Signout submitRegister={submitRegister} />
+      <Wrapper>
+        <div className='col-fr'>
+          <p className="title"> Comment vous appelez-vous ? </p>
+          <Signout submitRegister={submitRegister} /> 
+
+          {/* <p className="text"> Nous vous aiderons à créer un compte en quelques étapes. </p> */}
+          <div className='btn_group'>
+            {/* <Link to='/register'> Démarrer </Link> */}
+          </div>
+        </div>
+
+        <FooterRegister />
+      </Wrapper>
     </Container>
   )
 }
