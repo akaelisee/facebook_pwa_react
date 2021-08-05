@@ -11,15 +11,16 @@ const HomeRegister = () => {
     <Container>
       <Wrapper>
         <div className='col-fr'>
-          <p className="title"> Rejoignez Facebook Pwa </p>
-          <p className="text"> Nous vous aiderons à créer un compte en quelques étapes. </p>
+          <p className='title'> Rejoignez Facebook Pwa </p>
+          <p className='text'>
+            Nous vous aiderons à créer un compte en quelques étapes.
+          </p>
           <div className='btn_group'>
             <Link to='/register'> Démarrer </Link>
           </div>
         </div>
         {/* footer */}
         <FooterRegister />
-
       </Wrapper>
     </Container>
   )
@@ -28,4 +29,3 @@ const HomeRegister = () => {
 HomeRegister.propTypes = {}
 
 export default HomeRegister
-

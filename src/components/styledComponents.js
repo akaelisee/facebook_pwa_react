@@ -148,8 +148,6 @@ const TextStatus = styled.div`
   padding-bottom: 5px;
 `
 
-
-
 // RemoveBtn Component
 const PageUp = keyframes`
   from {

@@ -18,76 +18,47 @@ const Register = () => {
     e.preventDefault()
 
     try {
-      // if (
-      //   !formStateRegister.lastname ||
-      //   !formStateRegister.firstname ||
-      //   !formStateRegister.email ||
-      //   !formStateRegister.password
-      // ) {
-      //   setErrorMessageRegister('Veuillez remplir les champs')
-      //   if (!formStateRegister.lastname) {
-      //     setErrorMessageRegister('Veuillez entrer un Nom')
-      //     return
-      //   } else if (!formStateRegister.firstname) {
-      //     setErrorMessageRegister(' Veuillez entrer un prenom')
-      //     return
-      //   } else if (!formStateRegister.email) {
-      //     setErrorMessageRegister(' Veuillez entrer email')
-      //     return
-      //   }
-      //   return
-      // } else if (formStateRegister.password.length < 6) {
-      //   setErrorMessageRegister(
-      //     'Veuillez entrer un mot de passe superieur a 5 caractéres'
-      //   )
-      //   return
-      // }
+      if (formStateRegister.password !== formStateRegister.cpassword) {
+        setErrorMessageRegister('La confirmation du mot de passe est incorrect')
+        return
+      }
 
       const datas = {
         firstname: formStateRegister.firstname,
         lastname: formStateRegister.lastname,
         email: formStateRegister.email,
-        password: formStateRegister.password
+        password: formStateRegister.password,
+        cpassword: formStateRegister.cpassword
       }
 
       console.log(datas)
 
-      // fetch('http://localhost:4000/register/user', {
-      //   method: 'post',
-      //   body: JSON.stringify(data)
-      // }).then(res => {
-      //   console.log(res)
-      // })
-
       axios({
         method: 'POST',
-        url: 'http://localhost:4000/register/user',
-        data: JSON.stringify(datas)
-      }).then(res => {
-        console.log('ok')
-        console.log(res)
-        // history.push({
-        //   pathname: '/login'
-        // })
+        url: apiUrl,
+        data: datas
       })
+        .then(res => {
+          // console.log(res)
+          history.push({
+            pathname: '/login'
+          })
+        })
+        .catch(error => {
+          setErrorMessageRegister(error.response.data)
+        })
     } catch (error) {
       console.log(error)
-      setErrorMessageRegister(
-        'Veuillez vous connecter avec le compte que vous avez déjà créé.'
-      )
     }
   }
   return (
     <Container>
       <Wrapper>
         <div className='col-fr'>
-          <p className="title"> Comment vous appelez-vous ? </p>
-          <Signout submitRegister={submitRegister} /> 
+          <p className='title'> Inscrivez-vous en tout sécurité ? </p>
+          <Signout submitRegister={submitRegister} />
 
-          {/* <p className="text"> Nous vous aiderons à créer un compte en quelques étapes. </p> */}
-          <div className='btn_group'>
-            {/* <Link to='/register'> Démarrer </Link> */}
-          </div>
+          <div className='btn_group'>{/* <span> Démarrer </span> */}</div>
         </div>
 
         <FooterRegister />

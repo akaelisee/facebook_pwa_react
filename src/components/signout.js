@@ -9,23 +9,16 @@ const Signout = ({ submitRegister }) => {
     password: '',
     cpassword: ''
   })
-  const [iSetp, setISetp] = useState(1);
-  const apiUrl = 'http://localhost:4000/register/user';
-  const [errorMessageRegister, setErrorMessageRegister] = useState('');
-  const [view, setView] = useState('view');
+  const [iSetp, setISetp] = useState(1)
+  const apiUrl = 'http://localhost:4000/register/user'
+  const [errorMessageRegister, setErrorMessageRegister] = useState('')
   // const [isPop, setIsPop] = useState(false);
 
   // const handleIsPop = () => {
   //   setIsPop(!isPop);
   // }
 
-  useEffect(() => {
-    
-  }, [])
-  
-  const IsExistValue = () => {
-    console.log(formStateRegister.firstname)
-  }
+  useEffect(() => {}, [])
 
   return (
     <>
@@ -40,92 +33,90 @@ const Signout = ({ submitRegister }) => {
             )
           }
         >
-          { iSetp === 1 ? (
-            <div className="rows"> 
-            <div className='form-control'>
-              <input
-                type='text'
-                name='firstname'
-                value={formStateRegister.firstname}
-                placeholder="Prénom"
-                
-                onChange={e =>
-                  setFormStateRegister({
-                    ...formStateRegister,
-                    firstname: e.target.value
-                  })
-                }
-              />
+          {iSetp === 1 ? (
+            <div className='rows'>
+              <div className='form-control'>
+                <input
+                  type='text'
+                  name='firstname'
+                  value={formStateRegister.firstname}
+                  placeholder='Prénom'
+                  onChange={e =>
+                    setFormStateRegister({
+                      ...formStateRegister,
+                      firstname: e.target.value
+                    })
+                  }
+                />
+              </div>
+              <div className='form-control'>
+                <input
+                  type='text'
+                  name='lastname'
+                  value={formStateRegister.lastname}
+                  placeholder='Nom de famille'
+                  onChange={e =>
+                    setFormStateRegister({
+                      ...formStateRegister,
+                      lastname: e.target.value
+                    })
+                  }
+                />
+              </div>
             </div>
-            <div className='form-control'>
-              <input
-                type='text'
-                name='lastname'
-                value={formStateRegister.lastname}
-                placeholder="Nom de famille"
-                onChange={e =>
-                  setFormStateRegister({
-                    ...formStateRegister,
-                    lastname: e.target.value
-                  })
-                }
-              />
-            </div>
-          </div>
           ) : (
-            <div className="col-auto">
-              <span hidden> {view} </span> 
-            <div className='form-control'>
-              <input
-                type='text'
-                name='email'
-                value={formStateRegister.email}
-                placeholder="E-mail"
-                onChange={e =>
-                  setFormStateRegister({
-                    ...formStateRegister,
-                    email: e.target.value
-                  })
-                }
-              />
+            <div className='col-auto'>
+              <div className='form-control'>
+                <input
+                  type='email'
+                  name='email'
+                  value={formStateRegister.email}
+                  placeholder='E-mail'
+                  onChange={e =>
+                    setFormStateRegister({
+                      ...formStateRegister,
+                      email: e.target.value
+                    })
+                  }
+                />
+              </div>
+              <div className='form-control'>
+                <input
+                  type='password'
+                  name='password'
+                  value={formStateRegister.password}
+                  placeholder='Mot de passe'
+                  onChange={e =>
+                    setFormStateRegister({
+                      ...formStateRegister,
+                      password: e.target.value
+                    })
+                  }
+                />
+              </div>
+              <div className='form-control'>
+                <input
+                  type='password'
+                  name='cpassword'
+                  value={formStateRegister.cpassword}
+                  placeholder='Confirmation du mot de passe'
+                  onChange={e =>
+                    setFormStateRegister({
+                      ...formStateRegister,
+                      cpassword: e.target.value
+                    })
+                  }
+                />
+              </div>
             </div>
-            <div className='form-control'>
-              <input
-                type='text'
-                name='password'
-                value={formStateRegister.password}
-                placeholder="Mot de passe"
-                onChange={e =>
-                  setFormStateRegister({
-                    ...formStateRegister,
-                    password: e.target.value
-                  })
-                }
-              />
-            </div>
-            <div className='form-control'>
-              <input
-                type='text'
-                name='cpassword'
-                value={formStateRegister.cpassword}
-                placeholder="Confirmation du mot de passe"
-                onChange={e =>
-                  setFormStateRegister({
-                    ...formStateRegister,
-                    cpassword: e.target.value
-                  })
-                }
-              />
-            </div>
+          )}
 
-          </div>
-          ) }
-          
-
-          <div className="next-form">
-            { formStateRegister.email && formStateRegister.password && formStateRegister.cpassword ? (
+          <div className='next-form'>
+            {formStateRegister.email &&
+            formStateRegister.password &&
+            formStateRegister.cpassword ? (
               <input type='submit' value='Valider' />
-            ):(
+            ) : (
               <></>
             )}
           </div>
@@ -137,16 +128,20 @@ const Signout = ({ submitRegister }) => {
         </form>
 
         {/* Btn suivant */}
-        <div className="next-form">
-          { formStateRegister.firstname && formStateRegister.lastname ? (
+        <div className='next-form'>
+          {formStateRegister.firstname && formStateRegister.lastname ? (
             <>
-              <button className={iSetp === 1 ? 'show btn-next' : 'hide btn-next'} onClick={()=>setISetp(iSetp + 1)} > Suivant </button>
+              <button
+                className={iSetp === 1 ? 'show btn-next' : 'hide btn-next'}
+                onClick={() => setISetp(iSetp + 1)}
+              >
+                Suivant
+              </button>
             </>
-          ):(
+          ) : (
             <></>
           )}
         </div>
-        
       </FormRegister>
     </>
   )
@@ -174,56 +169,54 @@ const FormRegister = styled.div`
   }
 
   .form-control {
-      /* padding: 2px 0; */
-      margin: 10px 0;
-      input {
-        position: relative;
-        width: 89%;
-        padding: 12px 6px;
-        border: 1px solid #aaaaaa;
-        border-radius: 3px;
-        outline: none;
-        font-size: 15px;
-      }
+    /* padding: 2px 0; */
+    margin: 10px 0;
+    input {
+      position: relative;
+      width: 89%;
+      padding: 12px 6px;
+      border: 1px solid #aaaaaa;
+      border-radius: 3px;
+      outline: none;
+      font-size: 15px;
     }
+  }
 
-    input[type="submit"] {
+  input[type='submit'] {
+    position: relative;
+    padding: 10px;
+    width: 93%;
+    background-color: #1877f2;
+    border: 1px solid #1877f2;
+    border-radius: 4px;
+    color: #f2eded;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    outline: none;
+  }
 
-        position: relative;
-        padding: 10px;
-        width: 93%;
-        background-color: #1877f2;
-        border: 1px solid #1877f2;
-        border-radius: 4px;
-        color: #f2eded;
-        font-size: 16px;
-        text-decoration: none;
-        font-weight: 600;
-        outline: none;
+  .next-form {
+    width: 100%;
+    text-align: center;
+    .hide {
+      display: none;
     }
-  
-    .next-form {
-      width: 100%;
-      text-align: center;
-      .hide {
-        display: none;
-      }
-      .show {
-        display: inline-block;
-      }
-      .btn-next {
-        position: relative;
-        padding: 10px;
-        width: 93%;
-        background-color: #1877f2;
-        border: 1px solid #1877f2;
-        border-radius: 4px;
-        color: #f2eded;
-        font-size: 16px;
-        text-decoration: none;
-        font-weight: 600;
-        outline: none;
-      }
+    .show {
+      display: inline-block;
     }
-  
+    .btn-next {
+      position: relative;
+      padding: 10px;
+      width: 93%;
+      background-color: #1877f2;
+      border: 1px solid #1877f2;
+      border-radius: 4px;
+      color: #f2eded;
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: 600;
+      outline: none;
+    }
+  }
 `

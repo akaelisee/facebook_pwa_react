@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 export const Container = styled.div`
   position: relative;
@@ -26,7 +25,7 @@ export const ContainerHome = styled.div`
     text-align: center;
     padding: 10px 0;
     line-height: 20px;
-    a{
+    a {
       text-decoration: none;
       color: #144d83;
     }

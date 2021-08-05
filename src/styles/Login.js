@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 // Style Signin Component
 export const HeaderContainer = styled.div`
@@ -18,11 +18,11 @@ export const HeaderContainer = styled.div`
       p {
         margin: 0px;
         line-height: 30px;
-        color: #139AF7;
-          font-weight: 600;
+        color: #139af7;
+        font-weight: 600;
         a {
           text-decoration: none;
-          color: #139AF7;
+          color: #139af7;
           font-weight: 600;
         }
       }
@@ -38,7 +38,7 @@ export const HeaderContainer = styled.div`
       z-index: 1;
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         right: 40px;
         top: 56%;
@@ -49,7 +49,7 @@ export const HeaderContainer = styled.div`
       }
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         top: 56%;
         left: 40px;
@@ -87,9 +87,9 @@ export const HeaderContainer = styled.div`
   }
 `
 export const Form = styled.form`
-    width: 100%;
+  width: 100%;
   .form__group {
-    input[type="text"] {
+    input[type='text'] {
       position: relative;
       left: -2px;
       width: 100%;
@@ -102,7 +102,7 @@ export const Form = styled.form`
       outline: none;
       font-size: 14px;
     }
-    input[type="password"] {
+    input[type='password'] {
       position: relative;
       left: -2px;
       width: 100%;

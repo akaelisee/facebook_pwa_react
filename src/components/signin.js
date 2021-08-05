@@ -33,7 +33,8 @@ const Signin = ({ submit }) => {
                     className='form__text'
                     onFocus={handleFocus}
                     type='text'
-                    name='username'
+                    name='email'
+                    value={formState.email}
                     placeholder='Adresse e-mail'
                     onChange={e =>
                       setFormState({ ...formState, email: e.target.value })
@@ -45,6 +46,7 @@ const Signin = ({ submit }) => {
                     className='form__mdp'
                     type='password'
                     name='password'
+                    value={formState.password}
                     onFocus={handleFocus}
                     placeholder='Mot de passe'
                     onChange={e =>

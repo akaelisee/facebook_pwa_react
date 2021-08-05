@@ -12,6 +12,18 @@ import RemoveBtn from '../components/removeBtn'
 import Styles from '../components/styledComponents'
 import { Detector } from 'react-detect-offline'
 import Offline from '../components/offline'
+import { MdVideoCall } from 'react-icons/md'
+import { ImFilePicture } from 'react-icons/im'
+import { IoMdVideocam } from 'react-icons/io'
+
+import {
+  ContainerNav,
+  Icon,
+  StatutContainer,
+  StatutImage,
+  Colgroup,
+  BlocDown
+} from '../styles/StatutStyted'
 
 const Statut = props => {
   const [timeLine, setTimeLine] = useState([])
@@ -70,57 +82,54 @@ const Statut = props => {
   }
 
   return (
-    <Styles.StatutContainer className='col'>
-      <Styles.Container>
-        <Styles.ContainerNav>
-          <Styles.BlocStatut justifyContent='space-between'>
-            <Styles.StatutImage width='35%' src={facebook} alt='Image' />
-            <Styles.LeftStatut>
-              <Styles.Icon
-                right
-                onClick={deconnexion}
-                width='30px'
-                src={power}
-              />
-            </Styles.LeftStatut>
-          </Styles.BlocStatut>
-          <Styles.BlocStatut>
-            <Styles.Colgroup padding='20px' backgroundColor='#3b5998'>
+    <StatutContainer className='col'>
+      <div className='container-statut'>
+        <div className='col-st'>
+          <div className='rows-status'>
+            <StatutImage width='35%' src={facebook} alt='Image' />
+            <div className='power'>
+              <Icon right onClick={deconnexion} width='30px' src={power} />
+            </div>
+          </div>
+          <div className='bloc-text'>
+            <Colgroup padding='20px' backgroundColor='#3b5998'>
               <Styles.SpanName>
                 {props.location?.state?.username ? funcNameUser() : ''}
               </Styles.SpanName>
-            </Styles.Colgroup>
+            </Colgroup>
             <div>
               <p
                 style={{ marginLeft: '10px', marginTop: '15px' }}
                 onClick={() => setOpenPopup(true)}
               >
-                {' '}
-                Que voulez-vous dire ?{' '}
+                Que voulez-vous dire ?
               </p>
             </div>
-          </Styles.BlocStatut>
-        </Styles.ContainerNav>
+          </div>
+        </div>
         <hr />
-        <Styles.BlocDown>
-          <p>
-            <Styles.Icon src={salon} />
+        <BlocDown>
+          <div className='deo direct'>
+            <IoMdVideocam />
             <span> En direct &nbsp; |</span>
-          </p>
-          <p>
-            <Styles.Icon src={photo} />
+          </div>
+          <div className='deo tof'>
+            <ImFilePicture />
             <span> Photo &nbsp;| </span>
-          </p>
-          <p>
-            <Styles.Icon src={video} />
+          </div>
+          <div className='deo salon'>
+            <MdVideoCall />
             <span> Salon</span>
-          </p>
-        </Styles.BlocDown>
-      </Styles.Container>
+          </div>
+        </BlocDown>
+      </div>
+
       <Styles.Container>
-        <Styles.Icon background src={backgrounda} />
+        elisee
+        {/* <Styles.Icon background src={backgrounda} /> */}
       </Styles.Container>
-      <div>
+
+      {/* <div>
         {timeLine.length ? (
           timeLine.map((item, index) => (
             <Styles.Container key={index}>
@@ -175,19 +184,19 @@ const Statut = props => {
             Pas de publication{' '}
           </p>
         )}
-      </div>
+      </div> */}
       {openPopup ? (
         <Publication handleSubmit={handleSubmit} close={closePopup} />
       ) : null}
-      <Detector
+      {/* <Detector
         render={({ online }) => {
           if (!online) {
             return <Offline />
           }
           return <></>
         }}
-      />
-    </Styles.StatutContainer>
+      /> */}
+    </StatutContainer>
   )
 }
 
