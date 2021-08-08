@@ -37,7 +37,6 @@ const Login = ({ history }) => {
       })
         .then(res => {
           localStorage.setItem('token', res.headers['auth-token'])
-          console.log(res.data)
           // setIsLoader(true)
           // history.push({
           //   pathname: '/statut',
@@ -47,7 +46,6 @@ const Login = ({ history }) => {
           // })
         })
         .catch(res => {
-          // console.log(res.response.data)
           setErrorMessage(res.response.data)
         })
     } catch (error) {

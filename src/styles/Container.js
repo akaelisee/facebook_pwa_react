@@ -35,3 +35,17 @@ export const ContainerHome = styled.div`
     }
   }
 `
+
+export const Span = styled.span`
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  ${props => {
+    if (props.public) {
+      return `
+          font-weight: bold;
+          margin-right: 20px;
+        `
+    }
+  }}
+`

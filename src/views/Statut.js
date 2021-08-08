@@ -2,33 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import facebook from '../assets/facebook.png'
 import power from '../assets/power.svg'
-import video from '../assets/video.png'
-import salon from '../assets/salon.png'
 import ellipsis from '../assets/ellipsis.svg'
-import backgrounda from '../assets/backgrounda.png'
-import photo from '../assets/photo.png'
 import Publication from '../components/publication'
 import RemoveBtn from '../components/removeBtn'
-import Styles from '../components/styledComponents'
 import { Detector } from 'react-detect-offline'
-import Offline from '../components/offline'
+import Offline from '../components/offine'
 import { MdVideoCall } from 'react-icons/md'
 import { ImFilePicture } from 'react-icons/im'
 import { IoMdVideocam } from 'react-icons/io'
+import Slide from '../components/swiper'
 
 import {
-  ContainerNav,
+  Container,
   Icon,
   StatutContainer,
   StatutImage,
   Colgroup,
-  BlocDown
+  Card,
+  BlocStatut,
+  TextStatus
 } from '../styles/StatutStyted'
 
 const Statut = props => {
   const [timeLine, setTimeLine] = useState([])
-  const [openPopup, setOpenPopup] = useState(false)
-  const [openPopupTwo, setOpenPopupTwo] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenBtn, setIsOpenBtn] = useState(false)
   const history = useHistory()
 
   const handleSubmit = (e, status) => {
@@ -37,12 +35,12 @@ const Statut = props => {
       const tl = [...timeLine, status]
       setTimeLine(tl)
       localStorage.setItem('add', JSON.stringify(tl))
-      setOpenPopup(false)
+      setIsOpen(!isOpen)
     }
   }
   useEffect(() => {
-    // setTimeLine(JSON.parse(localStorage.getItem('add') || '[]'))
-  }, [])
+    setTimeLine(JSON.parse(localStorage.getItem('add') || '[]'))
+  }, []);
 
   // deconnexion
   const deconnexion = () => {
@@ -51,6 +49,8 @@ const Statut = props => {
       history.push('/')
     }, 1000)
   }
+
+
   const funcNameUser = () => {
     let name = props.location?.state?.username.toUpperCase()
     if (!name[0]) {
@@ -63,12 +63,12 @@ const Statut = props => {
     }
   }
 
-  const closePopup = () => {
-    setOpenPopup(false)
+  const togglePopup = () => {
+    setIsOpen(!isOpen); 
   }
 
-  const closePopupTwo = () => {
-    setOpenPopupTwo(false)
+  const togglePopupBtn = () => {
+    setIsOpenBtn(!isOpenBtn)
   }
 
   const removeStatut = id => {
@@ -78,7 +78,7 @@ const Statut = props => {
     })
     setTimeLine(filteredStatut)
     localStorage.setItem('add', JSON.stringify(filteredStatut))
-    setOpenPopupTwo(false)
+    togglePopupBtn()
   }
 
   return (
@@ -93,14 +93,14 @@ const Statut = props => {
           </div>
           <div className='bloc-text'>
             <Colgroup padding='20px' backgroundColor='#3b5998'>
-              <Styles.SpanName>
+              <span>
                 {props.location?.state?.username ? funcNameUser() : ''}
-              </Styles.SpanName>
+              </span>
             </Colgroup>
             <div>
               <p
                 style={{ marginLeft: '10px', marginTop: '15px' }}
-                onClick={() => setOpenPopup(true)}
+                onClick={() => togglePopup()}
               >
                 Que voulez-vous dire ?
               </p>
@@ -108,7 +108,7 @@ const Statut = props => {
           </div>
         </div>
         <hr />
-        <BlocDown>
+        <div className="video">
           <div className='deo direct'>
             <IoMdVideocam />
             <span> En direct &nbsp; |</span>
@@ -121,25 +121,26 @@ const Statut = props => {
             <MdVideoCall />
             <span> Salon</span>
           </div>
-        </BlocDown>
+        </div>
       </div>
 
-      <Styles.Container>
-        elisee
-        {/* <Styles.Icon background src={backgrounda} /> */}
-      </Styles.Container>
+    
+      <Container>
+        <Slide />
+      </Container>
 
-      {/* <div>
+      <div>
         {timeLine.length ? (
           timeLine.map((item, index) => (
-            <Styles.Container key={index}>
-              <Styles.Card>
-                <Styles.BlocStatut justifyContent='space-between'>
-                  <Styles.Colgroup padding='20px' backgroundColor='#3b5998'>
-                    <Styles.SpanName>
-                      {props.location?.state?.username ? funcNameUser() : ''}{' '}
-                    </Styles.SpanName>
-                  </Styles.Colgroup>
+            <Container key={index}>
+
+              <Card>
+                <BlocStatut justifyContent='space-between'>
+                  <Colgroup padding='20px' backgroundColor='#3b5998'>
+                    <span>
+                      {props.location?.state?.username ? funcNameUser() : ''}
+                    </span>
+                  </Colgroup>
                   <div>
                     <p
                       style={{
@@ -153,21 +154,22 @@ const Statut = props => {
                         : ' '}
                     </p>
                   </div>
-                  <Styles.Icon
-                    onClick={() => setOpenPopupTwo(true)}
+                  <Icon
+                    onClick={togglePopupBtn}
                     src={ellipsis}
                   />
-                </Styles.BlocStatut>
-                <Styles.TextStatus>{item}</Styles.TextStatus>
-              </Styles.Card>
-              {openPopupTwo ? (
-                <RemoveBtn
+                </BlocStatut>
+                <TextStatus>{item}</TextStatus>
+              </Card>
+
+              {/* Btn remove */}
+              <RemoveBtn
                   removeStatut={removeStatut}
                   index={index}
-                  closePopupTwo={closePopupTwo}
+                  isOpenBtn={isOpenBtn}
+                  togglePopupBtn={togglePopupBtn}
                 />
-              ) : null}
-            </Styles.Container>
+            </Container>
           ))
         ) : (
           <p
@@ -184,18 +186,17 @@ const Statut = props => {
             Pas de publication{' '}
           </p>
         )}
-      </div> */}
-      {openPopup ? (
-        <Publication handleSubmit={handleSubmit} close={closePopup} />
-      ) : null}
-      {/* <Detector
+      </div>
+      <Publication handleSubmit={handleSubmit} isOpen={isOpen} togglePopup={togglePopup}/>
+
+      <Detector
         render={({ online }) => {
           if (!online) {
             return <Offline />
           }
           return <></>
         }}
-      /> */}
+      />
     </StatutContainer>
   )
 }

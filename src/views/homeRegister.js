@@ -1,8 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Container } from '../styles/Container'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 import FooterRegister from '../components/footerRegister'
 import { Wrapper } from '../styles/Wrapper'
 

@@ -49,10 +49,50 @@ export const StatutContainer = styled.div`
         display: flex;
       }
     }
+    .video {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 0 auto;
+      padding-bottom: 5px;
+      .deo {
+        svg {
+          font-size: 20px;
+        }
+        span {
+          position: relative;
+          float: right;
+          margin-left: 5px;
+          padding: 4px 0;
+          font-weight: 500;
+        }
+      }
+      .direct {
+        svg {
+          position: relative;
+          top: 6px;
+          color: #c00a47;
+        }
+      }
+      .tof {
+        svg {
+          position: relative;
+          top: 4px;
+          color: #0ac065;
+        }
+      }
+      .salon {
+        svg {
+          position: relative;
+          top: 6px;
+          color: #960ac0;
+        }
+      }
+    }
   }
 `
 //Style statut Page
-const Container = styled.div`
+export const Container = styled.div`
   ${props => {
     if (props.offline) {
       return `
@@ -63,10 +103,20 @@ const Container = styled.div`
       `
     } else {
       return `
-
+        width: 100%;
+        background-color: #ffffff;
+        margin: 5px auto;
+        box-shadow: 0 0 1px 0.5px #ffffff;
         `
     }
   }}
+`
+
+export const BlocStatut = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: ${props => props.justifyContent};
 `
 export const StatutImage = styled.img`
   width: ${props => props.width};
@@ -79,43 +129,20 @@ export const Colgroup = styled.div`
   padding: ${props => props.padding};
   border-radius: 50%;
   float: ${props => props.float};
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: sans-serif;
+    color: #fff;
+    font-weight: 700;
+  }
 `
 
-export const BlocDown = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
-  .deo {
-    svg {
-      font-size: 30px;
-    }
-    span {
-      position: relative;
-      float: right;
-      margin-left: 5px;
-      padding: 4px 0;
-      font-weight: 500;
-      font-size: 17px;
-    }
-  }
-  .direct {
-    svg {
-      color: #c00a47;
-    }
-  }
-  .tof {
-    svg {
-      color: #0ac065;
-    }
-  }
-  .salon {
-    svg {
-      color: #960ac0;
-    }
-  }
-`
 export const Icon = styled.img`
+cursor: pointer;
   ${props => {
     if (props.right) {
       return `
