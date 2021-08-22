@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container } from '../styles/Container'
 import Signout from '../components/signout'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { Wrapper } from '../styles/Wrapper'
 import FooterRegister from '../components/footerRegister'
+import Loader from '../components/loader'
 
 const Register = () => {
   const history = useHistory()
+  const [isLoaded, setIsLoader] = useState(false)
+
   const submitRegister = (
     e,
     formStateRegister,
@@ -29,16 +32,13 @@ const Register = () => {
         password: formStateRegister.password,
         cpassword: formStateRegister.cpassword
       }
-
-      console.log(datas)
-
       axios({
         method: 'POST',
         url: apiUrl,
         data: datas
       })
         .then(res => {
-          // console.log(res)
+          setIsLoader(true)
           history.push({
             pathname: '/login'
           })
@@ -50,7 +50,8 @@ const Register = () => {
       console.log(error)
     }
   }
-  return (
+
+  return !isLoaded ? (
     <Container>
       <Wrapper>
         <div className='col-fr'>
@@ -63,6 +64,8 @@ const Register = () => {
         <FooterRegister />
       </Wrapper>
     </Container>
+  ) : (
+    <Loader />
   )
 }
 

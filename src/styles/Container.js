@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: relative;
   width: 350px;
   margin: 0 auto;
-  background-color: #aaa;
+  background-color: #2a2a2a;
   @media (max-width: 380px) {
     width: 100%;
   }
@@ -27,11 +27,11 @@ export const ContainerHome = styled.div`
     line-height: 20px;
     a {
       text-decoration: none;
-      color: #144d83;
+      color: #1877f2;
     }
     svg {
       font-size: 20px;
-      color: #144d83;
+      color: #1877f2;
     }
   }
 `

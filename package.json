@@ -1,5 +1,6 @@
 {
-  "name": "app_react",
+  "name": "facebook-test-pwa",
+  "homepage": "https://facebookpwa.akaelisee.fr",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

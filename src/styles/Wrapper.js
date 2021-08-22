@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
       text-align: center;
       padding: 0 25px;
       font-size: 13px;
+      color: #1877f2;
     }
 
     .btn_group {

@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { RiSettings5Fill } from 'react-icons/ri'
 import { Logo } from '../components/logo'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { ContainerHome } from '../styles/Container'
 
 const Home = () => {
+  const history = useHistory()
+  useEffect(() => {
+    let token = localStorage.getItem('token')
+    if (token) {
+      return history.push('/statut')
+    }
+  }, [])
   return (
     <ContainerHome>
       <div className='logo__home'>

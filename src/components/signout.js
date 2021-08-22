@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Signout = ({ submitRegister }) => {
@@ -10,15 +10,8 @@ const Signout = ({ submitRegister }) => {
     cpassword: ''
   })
   const [iSetp, setISetp] = useState(1)
-  const apiUrl = 'http://localhost:4000/register/user'
+  const apiUrl = 'https://authentificat.akaelisee.fr/register/user'
   const [errorMessageRegister, setErrorMessageRegister] = useState('')
-  // const [isPop, setIsPop] = useState(false);
-
-  // const handleIsPop = () => {
-  //   setIsPop(!isPop);
-  // }
-
-  useEffect(() => {}, [])
 
   return (
     <>
@@ -194,6 +187,7 @@ const FormRegister = styled.div`
     text-decoration: none;
     font-weight: 600;
     outline: none;
+    cursor: pointer;
   }
 
   .next-form {
@@ -204,8 +198,10 @@ const FormRegister = styled.div`
     }
     .show {
       display: inline-block;
+      cursor: pointer;
     }
     .btn-next {
+      cursor: pointer;
       position: relative;
       padding: 10px;
       width: 93%;

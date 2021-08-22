@@ -60,7 +60,7 @@ export const HeaderContainer = styled.div`
         /* background-color: #fff; */
       }
       span {
-        color: #ff0;
+        color: #1877f2;
         font-size: 17px;
       }
     }

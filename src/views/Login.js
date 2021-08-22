@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Signin from '../components/signin'
 import axios from 'axios'
 import Loader from '../components/loader'
@@ -6,26 +6,16 @@ import Loader from '../components/loader'
 const Login = ({ history }) => {
   const [isLoaded, setIsLoader] = useState(false)
 
+  useEffect(() => {
+    let token = localStorage.getItem('token')
+    if (token) {
+      return history.push('/statut')
+    }
+  }, [])
+
   const submit = (e, formState, setErrorMessage, history, apiUrl) => {
     e.preventDefault()
     try {
-      // if (!formState.email || !formState.password) {
-      //   setErrorMessage('Veuillez remplir les champs')
-      //   if (!formState.email) {
-      //     setErrorMessage('Veuillez entrer un email')
-      //     return
-      //   } else if (!formState.password) {
-      //     setErrorMessage(' Veuillez entrer un mot de passe')
-      //     return
-      //   }
-      //   return
-      // } else if (formState.password.length < 6) {
-      //   setErrorMessage(
-      //     ' Veuillez entrer un mot de passe superieur a 5 caractéres'
-      //   )
-      //   return
-      // }
-
       const datas = {
         email: formState.email,
         password: formState.password
@@ -36,14 +26,16 @@ const Login = ({ history }) => {
         data: datas
       })
         .then(res => {
-          localStorage.setItem('token', res.headers['auth-token'])
-          // setIsLoader(true)
-          // history.push({
-          //   pathname: '/statut',
-          //   state: {
-          //     data: res.data
-          //   }
-          // })
+          if (res) {
+            setIsLoader(true)
+            localStorage.setItem('token', res.headers['auth-token'])
+            history.push({
+              pathname: '/statut',
+              state: {
+                data: res.data
+              }
+            })
+          }
         })
         .catch(res => {
           setErrorMessage(res.response.data)
@@ -53,12 +45,14 @@ const Login = ({ history }) => {
     }
   }
 
-  return !isLoaded ? (
+  if (isLoaded) {
+    return <Loader />
+  }
+
+  return (
     <div className='login'>
       <Signin submit={submit} />
     </div>
-  ) : (
-    <Loader />
   )
 }
 

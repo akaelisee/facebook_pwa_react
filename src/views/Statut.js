@@ -25,7 +25,7 @@ import {
 
 const Statut = props => {
   const [timeLine, setTimeLine] = useState([])
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const [isOpenBtn, setIsOpenBtn] = useState(false)
   const history = useHistory()
 
@@ -40,7 +40,7 @@ const Statut = props => {
   }
   useEffect(() => {
     setTimeLine(JSON.parse(localStorage.getItem('add') || '[]'))
-  }, []);
+  }, [])
 
   // deconnexion
   const deconnexion = () => {
@@ -50,21 +50,15 @@ const Statut = props => {
     }, 1000)
   }
 
-
   const funcNameUser = () => {
-    let name = props.location?.state?.username.toUpperCase()
-    if (!name[0]) {
-      const namePremier = name[0]
-      return namePremier
-    } else {
-      const namePremier = name[0]
-      const nameSecond = name[1]
-      return `${namePremier}${nameSecond}`
-    }
+    let lastname = props.location?.state?.data.lastname.toUpperCase()
+    let firstname = props.location?.state?.data.firstname.toUpperCase()
+
+    return `${lastname[0]}${firstname[0]}`
   }
 
   const togglePopup = () => {
-    setIsOpen(!isOpen); 
+    setIsOpen(!isOpen)
   }
 
   const togglePopupBtn = () => {
@@ -93,9 +87,7 @@ const Statut = props => {
           </div>
           <div className='bloc-text'>
             <Colgroup padding='20px' backgroundColor='#3b5998'>
-              <span>
-                {props.location?.state?.username ? funcNameUser() : ''}
-              </span>
+              <span>{props.location?.state ? funcNameUser() : ''}</span>
             </Colgroup>
             <div>
               <p
@@ -108,7 +100,7 @@ const Statut = props => {
           </div>
         </div>
         <hr />
-        <div className="video">
+        <div className='video'>
           <div className='deo direct'>
             <IoMdVideocam />
             <span> En direct &nbsp; |</span>
@@ -124,7 +116,6 @@ const Statut = props => {
         </div>
       </div>
 
-    
       <Container>
         <Slide />
       </Container>
@@ -133,13 +124,10 @@ const Statut = props => {
         {timeLine.length ? (
           timeLine.map((item, index) => (
             <Container key={index}>
-
               <Card>
                 <BlocStatut justifyContent='space-between'>
                   <Colgroup padding='20px' backgroundColor='#3b5998'>
-                    <span>
-                      {props.location?.state?.username ? funcNameUser() : ''}
-                    </span>
+                    <span>{props.location?.state ? funcNameUser() : ''}</span>
                   </Colgroup>
                   <div>
                     <p
@@ -154,21 +142,18 @@ const Statut = props => {
                         : ' '}
                     </p>
                   </div>
-                  <Icon
-                    onClick={togglePopupBtn}
-                    src={ellipsis}
-                  />
+                  <Icon onClick={togglePopupBtn} src={ellipsis} />
                 </BlocStatut>
                 <TextStatus>{item}</TextStatus>
               </Card>
 
               {/* Btn remove */}
               <RemoveBtn
-                  removeStatut={removeStatut}
-                  index={index}
-                  isOpenBtn={isOpenBtn}
-                  togglePopupBtn={togglePopupBtn}
-                />
+                removeStatut={removeStatut}
+                index={index}
+                isOpenBtn={isOpenBtn}
+                togglePopupBtn={togglePopupBtn}
+              />
             </Container>
           ))
         ) : (
@@ -187,7 +172,11 @@ const Statut = props => {
           </p>
         )}
       </div>
-      <Publication handleSubmit={handleSubmit} isOpen={isOpen} togglePopup={togglePopup}/>
+      <Publication
+        handleSubmit={handleSubmit}
+        isOpen={isOpen}
+        togglePopup={togglePopup}
+      />
 
       <Detector
         render={({ online }) => {
